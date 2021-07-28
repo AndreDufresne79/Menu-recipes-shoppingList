@@ -12,18 +12,18 @@ class pp
 	function authentifier()
 	{
 		session_start() ;
-		//on vérifie si l'utilisateur est identifié
+		//on vÃ©rifie si l'utilisateur est identifiÃ©
 		if ( !isset( $_SESSION['nom'] ) ) {
 
 	if ( isset( $_POST['pseudo'] ) && isset( $_POST['motdepasse'] ) ) {
 
-	//on les récupère
+	//on les rÃ©cupÃ¨re
 	$nom = $_POST['pseudo'] ;
 	$motdepasse = $_POST['motdepasse'] ;
 	
 	//on teste si le mot de passe est valide :
 	if ( $this->verification( $nom, $motdepasse ) ) {
-	//le mot de passe est valide, l'utilisateur est identifié
+	//le mot de passe est valide, l'utilisateur est identifiÃ©
 	//on change d'identifiant de session
 		session_regenerate_id();
 
@@ -46,11 +46,11 @@ class pp
 }
 
 		//la variable de session n'existe pas,
-		//donc l'utilisateur n'est pas authentifié
+		//donc l'utilisateur n'est pas authentifiÃ©
 		//On redirige sur la page permettant de s'authentifier
 		$this->afficher_page_authentication();
 
-		//On arrête l'exécution
+		//On arrÃªte l'exÃ©cution
 		exit() ;
 	}
 
@@ -60,10 +60,10 @@ class pp
 	{
 		$this->messages->ajouter( $this->utilisateur->admin_on, new message(NULL, 'dbug', 'connecter_base...'));
 
-		// connection à mysql
+		// connection Ã  mysql
 		
 		//Connexion SQL
-		$dbhote = 'john.doe.sql.free.fr'; //Enter here the database adress 
+		$dbhote = 'john.doe.sql.free.fr'; //Enter here the database address 
 		$dbuser = 'john.doe'; // Enter here the user ID
 		$dbpass = 'qwerty123'; // Enter here the password for the database
 		$dbase = 'joe_doe'; // Enter here the name of the database
@@ -72,14 +72,14 @@ class pp
 		
 		if(!$this->lien_mysql)
 		{
-			$this->messages->ajouter( $this->utilisateur->admin_on, new message(NULL, 'erreur', 'Impossible de se connecter � la base de donn�es.'));
+			$this->messages->ajouter( $this->utilisateur->admin_on, new message(NULL, 'erreur', 'Impossible de se connecter à la base de données.'));
 		}
 
-		// sélection de la base de données
+		// sÃ©lection de la base de donnÃ©es
 		$mysql = mysql_select_db($dbase,$link);
 		if(!$mysql)
 		{
-		$this->messages->ajouter( $this->utilisateur->admin_on, new message(NULL, 'erreur', 'Impossible de sélectionner la base de donn�es.'));
+		$this->messages->ajouter( $this->utilisateur->admin_on, new message(NULL, 'erreur', 'Impossible de sÃ©lectionner la base de données.'));
 		};
 		$this->messages->ajouter( $this->utilisateur->admin_on, new message(NULL, 'dbug', 'connecter_base... OK.'));
 	}
@@ -242,12 +242,12 @@ class pp
 	function verification($nom,$pass)
 	{
 		$this->connecter_base();
-		//Création de la requête SQL
+		//CrÃ©ation de la requÃªte SQL
 		$nom_sql = mysql_real_escape_string($nom) ;
 		$pass_sql = mysql_real_escape_string($pass) ;
 		$sql ="SELECT * FROM user WHERE login='$nom_sql' AND pass='$pass_sql'" ;
 
-		//Execution de la requête SQL
+		//Execution de la requÃªte SQL
 		$result = mysql_query($sql,$this->lien_mysql);
 		if(mysql_num_rows($result)>0) {
 			return TRUE;
@@ -270,7 +270,7 @@ else
 };
 $sql .= " AND NOT(ldc_articles.ID IS NULL) GROUP BY mds_recettes.ID_article ORDER BY ldc_rayons.ordre, ldc_articles.designation";
 
-//Execution de la requête SQL
+//Execution de la requÃªte SQL
 $result = mysql_query($sql,$this->lien_mysql);
 $nombre_articles = mysql_num_rows($result)
 
@@ -299,7 +299,7 @@ $nombre_articles = mysql_num_rows($result)
 				</li>
 				<li><a class="bouton" href="page_perso.php?commande=afficher_menu_de_la_semaine">Menu de la semaine</a>
 				</li>
-				<li><a class="bouton_deco" href="page_perso.php?commande=deconnecter">Se déconnecter</a>
+				<li><a class="bouton_deco" href="page_perso.php?commande=deconnecter">Se dÃ©connecter</a>
 				</li>
 			</ul>
 		</div>
@@ -325,12 +325,12 @@ $nombre_articles = mysql_num_rows($result)
 					{
 						echo date("Y-m-d");
 					};?>">
-					<input class="bouton" type="submit" value="Générer la liste">
+					<input class="bouton" type="submit" value="GÃ©nÃ©rer la liste">
 				</p>
 				</form>
 		</div>
 		<div class="liste_de_courses">
-				<h2>Liste dans l'ordre des rayons (<? echo $nombre_articles; ?> entrée(s))</h2>
+				<h2>Liste dans l'ordre des rayons (<? echo $nombre_articles; ?> entrÃ©e(s))</h2>
 			<form method="POST" action="page_perso.php?commande=afficher_liste_de_courses">
 <?
 $titre = "";
@@ -364,7 +364,7 @@ $premier_titre = true;
 			{
 				$texte_article .= " step='0.005'";
 			};
-			if ($row["unite"] == "unité(s)")
+			if ($row["unite"] == "unitÃ©(s)")
 			{
 				$texte_article .= " step='0.01'";
 			};
@@ -381,7 +381,7 @@ $premier_titre = true;
 		echo "</ul>";
 ?>
 				<p class="champs_centres">
-				<input class="bouton" type="submit" value="Ajouter à la liste">
+				<input class="bouton" type="submit" value="Ajouter Ã  la liste">
 				</p>
 			</form>
 
@@ -409,7 +409,7 @@ $premier_titre = true;
 
 	<div class="grid">
 		<div class="titre">
-			<h1>Détail de la recette
+			<h1>DÃ©tail de la recette
 			</h1>
 		</div>
 		<div class="entete">
@@ -420,7 +420,7 @@ $premier_titre = true;
 				</li>
 				<li><a class="bouton" href="page_perso.php?commande=afficher_liste_des_recettes">Liste des recettes</a>
 				</li>
-				<li><a class="bouton_deco" href="page_perso.php?commande=deconnecter">Se déconnecter</a>
+				<li><a class="bouton_deco" href="page_perso.php?commande=deconnecter">Se dÃ©connecter</a>
 				</li>
 			</ul>
 		</div>
@@ -433,7 +433,7 @@ $premier_titre = true;
 ?>
 		<div class="liste_des_recettes">
 				<h2><? echo $designation; ?></h2>
-				<h3>Ingrédients</h3>
+				<h3>IngrÃ©dients</h3>
 <?
 	$sql = "SELECT ID_article, designation, quantite, unite FROM mds_recettes LEFT JOIN ldc_articles ON ID_article = ID WHERE ID_item_menu =".$_GET["ID_item_menu"];
 	$result = mysql_query($sql,$this->lien_mysql);
@@ -452,11 +452,11 @@ $premier_titre = true;
 	}
 	else
 	{
-		echo "<em>Aucun ingrédient</em>";
+		echo "<em>Aucun ingrÃ©dient</em>";
 	};
 
 ?>
-				<h3>Matériel</h3>
+				<h3>MatÃ©riel</h3>
 <?
 	$sql = "SELECT ID_article, designation, quantite, unite FROM mds_materiel LEFT JOIN ldc_articles ON ID_article = ID WHERE ID_item_menu =".$_GET["ID_item_menu"];
 	$result = mysql_query($sql,$this->lien_mysql);
@@ -475,10 +475,10 @@ $premier_titre = true;
 	}
 	else
 	{
-		echo "<em>Aucun matériel</em>";
+		echo "<em>Aucun matÃ©riel</em>";
 	};
 ?>
-				<h3>Préparation</h3>
+				<h3>PrÃ©paration</h3>
 <?
 	$sql = "SELECT ID_item_menu, ordre, texte FROM mds_instructions WHERE ID_item_menu =".$_GET["ID_item_menu"]." ORDER BY ordre";
 	$result = mysql_query($sql,$this->lien_mysql);
@@ -563,7 +563,7 @@ $premier_titre = true;
 				</li>
 				<li><a class="bouton" href="page_perso.php?commande=afficher_liste_des_recettes">Liste des recettes</a>
 				</li>
-				<li><a class="bouton_deco" href="page_perso.php?commande=deconnecter">Se déconnecter</a>
+				<li><a class="bouton_deco" href="page_perso.php?commande=deconnecter">Se dÃ©connecter</a>
 				</li>
 			</ul>
 		</div>
@@ -576,7 +576,7 @@ $premier_titre = true;
 ?>
 		<div class="liste_des_recettes">
 				<h2><? echo $designation_item_menu; ?></h2>
-				<h3>Ingrédients</h3>
+				<h3>IngrÃ©dients</h3>
 <?
 	$sql = "SELECT ID_article, designation, quantite, unite FROM mds_recettes LEFT JOIN ldc_articles ON ID_article = ID WHERE ID_item_menu =".$_REQUEST["ID_item_menu"];
 	$result = mysql_query($sql,$this->lien_mysql);
@@ -596,11 +596,11 @@ $premier_titre = true;
 	}
 	else
 	{
-		echo "<em>Aucun ingrédient</em>";
+		echo "<em>Aucun ingrÃ©dient</em>";
 	};
 
 ?>
-				<h3>Matériel</h3>
+				<h3>MatÃ©riel</h3>
 <?
 	$sql = "SELECT ID_article, designation, quantite, unite FROM mds_materiel LEFT JOIN ldc_articles ON ID_article = ID WHERE ID_item_menu =".$_REQUEST["ID_item_menu"];
 	$result = mysql_query($sql,$this->lien_mysql);
@@ -620,10 +620,10 @@ $premier_titre = true;
 	}
 	else
 	{
-		echo "<em>Aucun matériel</em>";
+		echo "<em>Aucun matÃ©riel</em>";
 	};
 ?>
-				<h3>Préparation</h3>
+				<h3>PrÃ©paration</h3>
 <?
 	$sql = "SELECT ID_item_menu, ordre, texte FROM mds_instructions WHERE ID_item_menu =".$_REQUEST["ID_item_menu"]." ORDER BY ordre";
 	$result = mysql_query($sql,$this->lien_mysql);
@@ -637,11 +637,11 @@ $premier_titre = true;
 			$ordre = $row["ordre"];
 			$texte_liste .= "<li><span class=\"etiquette_recette\"><a href=\"page_perso.php?commande=afficher_edition_etape_recette&numero_instruction_editee=".$ordre."&ID_item_menu=".$_REQUEST["ID_item_menu"]."\">".$texte."</a></span></li>";
 		};	
-		echo $texte_liste."</ul><p class=\"champs_centres\"><input type=\"hidden\" name=\"commande\" value=\"afficher_edition_etape_recette\"><input type=\"hidden\" name=\"numero_instruction_editee\" value=\"".($ordre + 1)."\"><input type=\"hidden\" name=\"ID_item_menu\" value=\"".$_REQUEST["ID_item_menu"]."\"><input class=\"bouton\" type=\"submit\" value=\"Ajouter une étape\"></p></form>";
+		echo $texte_liste."</ul><p class=\"champs_centres\"><input type=\"hidden\" name=\"commande\" value=\"afficher_edition_etape_recette\"><input type=\"hidden\" name=\"numero_instruction_editee\" value=\"".($ordre + 1)."\"><input type=\"hidden\" name=\"ID_item_menu\" value=\"".$_REQUEST["ID_item_menu"]."\"><input class=\"bouton\" type=\"submit\" value=\"Ajouter une Ã©tape\"></p></form>";
 	}
 	else
 	{
-		echo "<em>Aucune instruction</em><form action=\"page_perso.php\"><p class=\"champs_centres\"><input type=\"hidden\" name=\"commande\" value=\"afficher_edition_etape_recette\"><input type=\"hidden\" name=\"numero_instruction_editee\" value=\"1\"><input type=\"hidden\" name=\"ID_item_menu\" value=\"".$_REQUEST["ID_item_menu"]."\"><input class=\"bouton\" type=\"submit\" value=\"Ajouter une étape\"></p></form>";
+		echo "<em>Aucune instruction</em><form action=\"page_perso.php\"><p class=\"champs_centres\"><input type=\"hidden\" name=\"commande\" value=\"afficher_edition_etape_recette\"><input type=\"hidden\" name=\"numero_instruction_editee\" value=\"1\"><input type=\"hidden\" name=\"ID_item_menu\" value=\"".$_REQUEST["ID_item_menu"]."\"><input class=\"bouton\" type=\"submit\" value=\"Ajouter une Ã©tape\"></p></form>";
 	};
 
 
@@ -680,17 +680,17 @@ $premier_titre = true;
 				</form>
 		</div>
 		<div ID="ajout_ingredient_a_la_recette" class="ajout_ingredient_a_la_recette">
-				<h2>Ajouter un ingrédient à la recette</h2>
+				<h2>Ajouter un ingrÃ©dient Ã  la recette</h2>
 				<? echo $this->composition_liste_ingredients_a_ajouter($_REQUEST["ID_item_menu"])
 ?>
 		</div>
 		<div class="ajout_materiel_a_la_recette">
-				<h2>Ajouter du matériel à la recette</h2>
+				<h2>Ajouter du matÃ©riel Ã  la recette</h2>
 				<? echo $this->composition_liste_materiel_a_ajouter($_REQUEST["ID_item_menu"])
 ?>
 		</div>
 		<div class="ajout_type_repas_a_la_recette">
-				<h2>Ajouter un type de repas à la recette</h2>
+				<h2>Ajouter un type de repas Ã  la recette</h2>
 				<? echo $this->composition_liste_type_repas_a_ajouter($_REQUEST["ID_item_menu"])
 ?>
 		</div>
@@ -808,7 +808,7 @@ $premier_titre = true;
 			{
 				echo " step='0.005'";
 			};
-			if ($row["unite"] == "unité(s)")
+			if ($row["unite"] == "unitÃ©(s)")
 			{
 				echo " step='0.01'";
 			};
@@ -903,7 +903,7 @@ echo $designation;
 			{
 				echo " step='0.005'";
 			};
-			if ($row["unite"] == "unité(s)")
+			if ($row["unite"] == "unitÃ©(s)")
 			{
 				echo " step='0.01'";
 			};
@@ -1000,7 +1000,7 @@ echo $designation;
 			{
 				echo " step='0.005'";
 			};
-			if ($row["unite"] == "unité(s)")
+			if ($row["unite"] == "unitÃ©(s)")
 			{
 				echo " step='0.01'";
 			};
@@ -1474,10 +1474,10 @@ echo $designation;
 			</h2>
 			<ol>
 <?
-//Création de la requête SQL
+//CrÃ©ation de la requÃªte SQL
 	$sql ="SELECT ldc_rayons.designation as rayon, ldc_rayons.ID as ID_rayon, ldc_rayons.ordre as ordre FROM ldc_rayons ORDER BY ordre";
 
-//Execution de la requête SQL
+//Execution de la requÃªte SQL
 	$result = mysql_query($sql,$this->lien_mysql);
 	if(mysql_num_rows($result)>0)
 	{
@@ -1511,7 +1511,7 @@ echo $designation;
 			<form action="page_perso.php">
 				<p class="champs_centres">
 					<input type="hidden" name="commande" value="ajouter_rayon">
-					<input class="champ" name="designation_nouveau_rayon" value="" placeholder="Entrez la désignation du rayon" type="text">
+					<input class="champ" name="designation_nouveau_rayon" value="" placeholder="Entrez la dÃ©signation du rayon" type="text">
 					<input class="bouton" type="submit" value="Ajouter">
 				</p>
 			</form>
@@ -1663,14 +1663,14 @@ echo $designation;
 			<ul>
 				<li><a class="bouton" href="page_perso.php">Accueil</a>
 				</li>
-				<li><a class="bouton" href="page_perso.php?commande=completer_liste_de_courses_depuis_menu">Compléter la liste de courses</a>
+				<li><a class="bouton" href="page_perso.php?commande=completer_liste_de_courses_depuis_menu">ComplÃ©ter la liste de courses</a>
 				</li>
 				<li><a class="bouton_deco" href="page_perso.php?commande=deconnecter">Se d&eacute;connecter</a>
 				</li>
 			</ul>
 		</div>
 		<div class="selection_jour">
-				<h2>Sélection du premier jour de la semaine</h2>
+				<h2>SÃ©lection du premier jour de la semaine</h2>
 				<form method="POST" action="page_perso.php">
 				<p class="champs_centres">
 					<input type="hidden" name="commande" value="afficher_menu_de_la_semaine">
@@ -1714,7 +1714,7 @@ echo $designation;
 
 				if(mysql_num_rows($result) == 0)
 				{
-					echo "<p><em>Aucun repas prévu</em></p>";
+					echo "<p><em>Aucun repas prÃ©vu</em></p>";
 				}
 				else
 				{
@@ -1827,7 +1827,7 @@ echo $designation;
 
 				if(mysql_num_rows($result) == 0)
 				{
-					echo "<ul><li><span class=\"etiquette_recette\"><em>Aucun repas prévu</em></span></li></ul>";
+					echo "<ul><li><span class=\"etiquette_recette\"><em>Aucun repas prÃ©vu</em></span></li></ul>";
 				}
 				else
 				{
@@ -1853,7 +1853,7 @@ echo $designation;
 				echo "<input type=\"hidden\" name=\"date\" value=".$jour.">";
 				echo "<input type=\"hidden\" name=\"jour\" value=".$jour.">";
 ?>
-					<input class="champ" name="designation_nouvel_item_menu_petit_dejeuner" list="designations_item_menu_petit_dejeuner" placeholder="Entrer la désignation">
+					<input class="champ" name="designation_nouvel_item_menu_petit_dejeuner" list="designations_item_menu_petit_dejeuner" placeholder="Entrer la dÃ©signation">
 					<datalist id="designations_item_menu_petit_dejeuner">
 <?
 				$sql = "SELECT mds_items_menu_types_repas.ID_type_repas, mds_items_menu.designation FROM mds_items_menu_types_repas LEFT JOIN mds_items_menu ON mds_items_menu.ID = mds_items_menu_types_repas.ID_item_menu WHERE ID_type_repas BETWEEN 0 AND 1 ORDER BY mds_items_menu.designation";
@@ -1904,7 +1904,7 @@ echo $designation;
 
 				if(mysql_num_rows($result) == 0)
 				{
-					echo "<ul><li><span class=\"etiquette_recette\"><em>Aucun repas prévu</em></span></li></ul>";
+					echo "<ul><li><span class=\"etiquette_recette\"><em>Aucun repas prÃ©vu</em></span></li></ul>";
 				}
 				else
 				{
@@ -1930,7 +1930,7 @@ echo $designation;
 				echo "<input type=\"hidden\" name=\"date\" value=".$jour.">";
 				echo "<input type=\"hidden\" name=\"jour\" value=".$jour.">";
 ?>
-					<input class="champ" name="designation_nouvel_item_menu_dejeuner" list="designations_item_menu_dejeuner" placeholder="Entrer la désignation">
+					<input class="champ" name="designation_nouvel_item_menu_dejeuner" list="designations_item_menu_dejeuner" placeholder="Entrer la dÃ©signation">
 					<datalist id="designations_item_menu_dejeuner">
 <?
 				$sql = "SELECT mds_items_menu_types_repas.ID_type_repas, mds_items_menu.designation FROM mds_items_menu_types_repas LEFT JOIN mds_items_menu ON mds_items_menu.ID = mds_items_menu_types_repas.ID_item_menu WHERE ID_type_repas BETWEEN 2 AND 6 ORDER BY mds_items_menu.designation";
@@ -1959,7 +1959,7 @@ echo $designation;
 				</p>
 				</form>
 				<a id="gouter"></a>
-				<h3>Goûter</h3>
+				<h3>GoÃ»ter</h3>
 <?
 
 			if ((!isset($_REQUEST["jour"])) OR ($_REQUEST["jour"] == ""))
@@ -1981,7 +1981,7 @@ echo $designation;
 
 				if(mysql_num_rows($result) == 0)
 				{
-					echo "<ul><li><span class=\"etiquette_recette\"><em>Aucun repas prévu</em></span></li></ul>";
+					echo "<ul><li><span class=\"etiquette_recette\"><em>Aucun repas prÃ©vu</em></span></li></ul>";
 				}
 				else
 				{
@@ -2008,7 +2008,7 @@ echo $designation;
 				echo "<input type=\"hidden\" name=\"jour\" value=".$jour.">";
 ?>
 
-					<input class="champ" name="designation_nouvel_item_menu_gouter" list="designations_item_menu_gouter" placeholder="Entrer la désignation">
+					<input class="champ" name="designation_nouvel_item_menu_gouter" list="designations_item_menu_gouter" placeholder="Entrer la dÃ©signation">
 					<datalist id="designations_item_menu_gouter">
 <?
 				$sql = "SELECT mds_items_menu_types_repas.ID_type_repas, mds_items_menu.designation FROM mds_items_menu_types_repas LEFT JOIN mds_items_menu ON mds_items_menu.ID = mds_items_menu_types_repas.ID_item_menu WHERE ID_type_repas BETWEEN 7 AND 8 ORDER BY mds_items_menu.designation";
@@ -2037,7 +2037,7 @@ echo $designation;
 				</p>
 				</form>
 				<a id="diner"></a>
-				<h3>Dîner</h3>
+				<h3>DÃ®ner</h3>
 <?
 
 			if ((!isset($_REQUEST["jour"])) OR ($_REQUEST["jour"] == ""))
@@ -2059,7 +2059,7 @@ echo $designation;
 
 				if(mysql_num_rows($result) == 0)
 				{
-					echo "<ul><li><span class=\"etiquette_recette\"><em>Aucun repas prévu</em></span></li></ul>";
+					echo "<ul><li><span class=\"etiquette_recette\"><em>Aucun repas prÃ©vu</em></span></li></ul>";
 				}
 				else
 				{
@@ -2086,7 +2086,7 @@ echo $designation;
 				echo "<input type=\"hidden\" name=\"jour\" value=".$jour.">";
 ?>
 
-					<input class="champ" name="designation_nouvel_item_menu_diner" list="designations_item_menu_diner" placeholder="Entrer la désignation">
+					<input class="champ" name="designation_nouvel_item_menu_diner" list="designations_item_menu_diner" placeholder="Entrer la dÃ©signation">
 					<datalist id="designations_item_menu_diner">
 <?
 				$sql = "SELECT mds_items_menu_types_repas.ID_type_repas, mds_items_menu.designation FROM mds_items_menu_types_repas LEFT JOIN mds_items_menu ON mds_items_menu.ID = mds_items_menu_types_repas.ID_item_menu WHERE ID_type_repas BETWEEN 9 AND 13 ORDER BY mds_items_menu.designation";
@@ -2137,7 +2137,7 @@ echo $designation;
 
 				if(mysql_num_rows($result) == 0)
 				{
-					echo "<ul><li><span class=\"etiquette_recette\"><em>Aucun repas prévu</em></span></li></ul>";
+					echo "<ul><li><span class=\"etiquette_recette\"><em>Aucun repas prÃ©vu</em></span></li></ul>";
 				}
 				else
 				{
@@ -2164,7 +2164,7 @@ echo $designation;
 				echo "<input type=\"hidden\" name=\"jour\" value=".$jour.">";
 ?>
 
-					<input class="champ" name="designation_nouvel_item_menu_encas" list="designations_item_menu_encas" placeholder="Entrer la désignation">
+					<input class="champ" name="designation_nouvel_item_menu_encas" list="designations_item_menu_encas" placeholder="Entrer la dÃ©signation">
 					<datalist id="designations_item_menu_encas">
 <?
 				$sql = "SELECT mds_items_menu_types_repas.ID_type_repas, mds_items_menu.designation FROM mds_items_menu_types_repas LEFT JOIN mds_items_menu ON mds_items_menu.ID = mds_items_menu_types_repas.ID_item_menu WHERE ID_type_repas = 14 ORDER BY mds_items_menu.designation";
@@ -2193,7 +2193,7 @@ echo $designation;
 				</form>
 		</div>
 		<div class="selection_jour">
-				<h2>Sélection du jour</h2>
+				<h2>SÃ©lection du jour</h2>
 				<form method="POST" action="page_perso.php">
 				<p class="champs_centres">
 					<input type="hidden" name="commande" value="edition_menu_jour">
@@ -2244,46 +2244,46 @@ echo $designation;
 			switch($type_repas)
 			{
 				case 0 :
-					return "Petit déjeuner";
+					return "Petit dÃ©jeuner";
 					break;
 				case 1 :
-					return "Petit déjeuner";
+					return "Petit dÃ©jeuner";
 					break;
 				case 2 :
-					return "Déjeuner";
+					return "DÃ©jeuner";
 					break;
 				case 3 :
-					return "Déjeuner";
+					return "DÃ©jeuner";
 					break;
 				case 4 :
-					return "Déjeuner";
+					return "DÃ©jeuner";
 					break;
 				case 5 :
-					return "Déjeuner";
+					return "DÃ©jeuner";
 					break;
 				case 6 :
-					return "Déjeuner";
+					return "DÃ©jeuner";
 					break;
 				case 7 :
-					return "Goûter";
+					return "GoÃ»ter";
 					break;
 				case 8 :
-					return "Goûter";
+					return "GoÃ»ter";
 					break;
 				case 9 :
-					return "Dîner";
+					return "DÃ®ner";
 					break;
 				case 10 :
-					return "Dîner";
+					return "DÃ®ner";
 					break;
 				case 11 :
-					return "Dîner";
+					return "DÃ®ner";
 					break;
 				case 12 :
-					return "Dîner";
+					return "DÃ®ner";
 					break;
 				case 13 :
-					return "Dîner";
+					return "DÃ®ner";
 					break;
 				case 14 :
 					return "Encas";
@@ -2296,46 +2296,46 @@ echo $designation;
 			switch($type_repas)
 			{
 				case 0 :
-					return "Petit déjeuner";
+					return "Petit dÃ©jeuner";
 					break;
 				case 1 :
-					return "Petit déjeuner (boissons)";
+					return "Petit dÃ©jeuner (boissons)";
 					break;
 				case 2 :
-					return "Déjeuner (entrée)";
+					return "DÃ©jeuner (entrÃ©e)";
 					break;
 				case 3 :
-					return "Déjeuner (plat de résistance)";
+					return "DÃ©jeuner (plat de rÃ©sistance)";
 					break;
 				case 4 :
-					return "Déjeuner (boissons)";
+					return "DÃ©jeuner (boissons)";
 					break;
 				case 5 :
-					return "Déjeuner (fromage)";
+					return "DÃ©jeuner (fromage)";
 					break;
 				case 6 :
-					return "Déjeuner (dessert)";
+					return "DÃ©jeuner (dessert)";
 					break;
 				case 7 :
-					return "Goûter";
+					return "GoÃ»ter";
 					break;
 				case 8 :
-					return "Goûter (boissons)";
+					return "GoÃ»ter (boissons)";
 					break;
 				case 9 :
-					return "Dîner (entrée)";
+					return "DÃ®ner (entrÃ©e)";
 					break;
 				case 10 :
-					return "Dîner (plat de résistance)";
+					return "DÃ®ner (plat de rÃ©sistance)";
 					break;
 				case 11 :
-					return "Dîner (boissons)";
+					return "DÃ®ner (boissons)";
 					break;
 				case 12 :
-					return "Dîner (fromage)";
+					return "DÃ®ner (fromage)";
 					break;
 				case 13 :
-					return "Dîner (desserts)";
+					return "DÃ®ner (desserts)";
 					break;
 				case 14 :
 					return "Encas";
@@ -2394,7 +2394,7 @@ echo $designation;
 				
 ?>
 		<div class="liste_des_recettes">
-				<h2>Liste des éléments de menu<? if (isset($item_menu_recherche)){echo " (".$item_menu_recherche.")";}; echo " (".$count.")";?></h2>
+				<h2>Liste des Ã©lÃ©ments de menu<? if (isset($item_menu_recherche)){echo " (".$item_menu_recherche.")";}; echo " (".$count.")";?></h2>
 				<form>
 				<input type="hidden" name="commande" value="afficher_liste_des_recettes"/>
 					<p class="champs_centres">
@@ -2515,19 +2515,19 @@ echo $designation;
 <?
 		$sql = "SELECT * FROM mds_instructions WHERE ID_item_menu = ".$_REQUEST["ID_item_menu"]." AND ordre = ".$_GET["numero_instruction_editee"];
 		
-//Execution de la requête SQL
+//Execution de la requÃªte SQL
 	$result = mysql_query($sql,$this->lien_mysql);
 	if(mysql_num_rows($result)>0) {
 		$row = mysql_fetch_array($result);
 		$texte = $row["texte"];
 		$commande = "modifier_etape_recette";
-		$bouton = "Modifier l'étape";
+		$bouton = "Modifier l'Ã©tape";
 	}
 	else
 	{
 		$texte = "";
 		$commande = "ajouter_etape_recette";
-		$bouton = "Ajouter l'étape";
+		$bouton = "Ajouter l'Ã©tape";
 	};
 ?>
 				<input type="hidden" name ="commande" value="<?echo $commande ?>" />
@@ -2547,13 +2547,13 @@ echo $designation;
 	{
 ?>
 		<div class="suppression_de_l_etape">
-				<h2>Suppression de l'étape</h2>
+				<h2>Suppression de l'Ã©tape</h2>
 			<form action="page_perso.php" method="POST">
 				<p class="champs_centres">
 				<input type="hidden" name ="commande" value="supprimer_etape_recette" />
 				<input type="hidden" name="numero_instruction_supprimee" value="<?echo $_GET["numero_instruction_editee"]?>" />
 				<input type="hidden" name="ID_item_menu" value="<?echo $_REQUEST["ID_item_menu"]?>" />
-					<input class="bouton_annuler" type="submit" value="Supprimer l'étape"/>
+					<input class="bouton_annuler" type="submit" value="Supprimer l'Ã©tape"/>
 				</p>
 			</form>
 		</div>
@@ -2572,7 +2572,7 @@ echo $designation;
 	function affiche_jauge()
 	{
 	
-	//Compter les articles rayés
+	//Compter les articles rayÃ©s
 	$sql = "SELECT COUNT(*) as fait FROM ldc_liste WHERE checked = 1";
 	$result = mysql_query($sql,$this->lien_mysql);
 	$row = mysql_fetch_array($result);
@@ -2590,10 +2590,10 @@ echo $designation;
 	function composition_liste()
 	{
 
-//Création de la requête SQL
+//CrÃ©ation de la requÃªte SQL
 	$sql ="SELECT ldc_articles.designation, ldc_liste.quantite, ldc_liste.checked, ldc_articles.unite, ldc_rayons.designation as rayon, ldc_rayons.ID as ID_rayon, ldc_liste.ID_article as ID_article FROM `ldc_liste` LEFT JOIN ldc_articles ON ldc_liste.ID_article = ldc_articles.ID LEFT JOIN ldc_rayons ON ldc_articles.ID_rayon = ldc_rayons.ID ORDER BY ldc_rayons.ordre, ldc_articles.designation";
 
-//Execution de la requête SQL
+//Execution de la requÃªte SQL
 	$result = mysql_query($sql,$this->lien_mysql);
 	$ID_rayon = 0;
 	if(mysql_num_rows($result)>0) {
@@ -2640,10 +2640,10 @@ echo $designation;
 	function composition_datalist_articles()
 	{
 
-//Création de la requête SQL
+//CrÃ©ation de la requÃªte SQL
 	$sql ="SELECT ldc_articles.designation FROM `ldc_articles` ORDER BY ldc_articles.designation ASC";
 
-//Execution de la requête SQL
+//Execution de la requÃªte SQL
 	$result = mysql_query($sql,$this->lien_mysql);
 	$ID_rayon = 0;
 	if(mysql_num_rows($result)>0) {
@@ -2663,10 +2663,10 @@ echo $designation;
 	function composition_select_types_repas()
 	{
 
-//Création de la requête SQL
+//CrÃ©ation de la requÃªte SQL
 	$sql ="SELECT ID, designation FROM `mds_types_repas` ORDER BY ID ASC";
 
-//Execution de la requête SQL
+//Execution de la requÃªte SQL
 	$result = mysql_query($sql,$this->lien_mysql);
 	$ID_rayon = 0;
 	if(mysql_num_rows($result)>0) {
@@ -2686,10 +2686,10 @@ echo $designation;
 	function composition_select_rayons($ID_rayon_selectionne)
 	{
 
-//Création de la requête SQL
+//CrÃ©ation de la requÃªte SQL
 	$sql ="SELECT ldc_rayons.ID, ldc_rayons.designation, ldc_rayons.ordre FROM `ldc_rayons` ORDER BY ldc_rayons.ordre ASC";
 
-//Execution de la requête SQL
+//Execution de la requÃªte SQL
 	$result = mysql_query($sql,$this->lien_mysql);
 	$ID_rayon = 0;
 	if(mysql_num_rows($result)>0) {
@@ -2715,7 +2715,7 @@ echo $designation;
 	{
 		$sql = "DELETE FROM ldc_liste WHERE checked = 1";
 
-		//Execution de la requête SQL
+		//Execution de la requÃªte SQL
 		$result = mysql_query($sql,$this->lien_mysql);		
 	}
 
@@ -2723,22 +2723,22 @@ echo $designation;
 	{
 		$sql = "DELETE FROM ldc_liste WHERE ID_article = ".$_GET["ID_article"];
 
-		//Execution de la requête SQL
+		//Execution de la requÃªte SQL
 		$result = mysql_query($sql,$this->lien_mysql);		
 
 		$sql = "DELETE FROM mds_recettes WHERE ID_article = ".$_GET["ID_article"];
 
-		//Execution de la requête SQL
+		//Execution de la requÃªte SQL
 		$result = mysql_query($sql,$this->lien_mysql);		
 
 		$sql = "DELETE FROM mds_materiel WHERE ID_article = ".$_GET["ID_article"];
 
-		//Execution de la requête SQL
+		//Execution de la requÃªte SQL
 		$result = mysql_query($sql,$this->lien_mysql);		
 
 		$sql = "DELETE FROM ldc_articles WHERE ID = ".$_GET["ID_article"];
 
-		//Execution de la requête SQL
+		//Execution de la requÃªte SQL
 		$result = mysql_query($sql,$this->lien_mysql);		
 	}
 	
@@ -2746,7 +2746,7 @@ echo $designation;
 	{
 		$sql = "DELETE FROM mds_items_menu_types_repas WHERE ID_item_menu = ".$_REQUEST["ID_item_menu"]." AND ID_type_repas = ".$_REQUEST["ID_type_repas"];
 		
-		//Execution de la requête SQL
+		//Execution de la requÃªte SQL
 		$result = mysql_query($sql,$this->lien_mysql);		
 
 	}
@@ -2755,27 +2755,27 @@ echo $designation;
 	{
 		$sql = "DELETE FROM mds_repas_prevus WHERE item_menu = ".$_GET["ID_item_menu"];
 
-		//Execution de la requête SQL
+		//Execution de la requÃªte SQL
 		$result = mysql_query($sql,$this->lien_mysql);		
 
 		$sql = "DELETE FROM mds_recettes WHERE ID_item_menu = ".$_GET["ID_item_menu"];
 
-		//Execution de la requête SQL
+		//Execution de la requÃªte SQL
 		$result = mysql_query($sql,$this->lien_mysql);		
 
 		$sql = "DELETE FROM mds_items_menu_types_repas WHERE ID_item_menu = ".$_GET["ID_item_menu"];
 
-		//Execution de la requête SQL
+		//Execution de la requÃªte SQL
 		$result = mysql_query($sql,$this->lien_mysql);		
 
 		$sql = "DELETE FROM mds_items_menu WHERE ID = ".$_GET["ID_item_menu"];
 
-		//Execution de la requête SQL
+		//Execution de la requÃªte SQL
 		$result = mysql_query($sql,$this->lien_mysql);		
 
 		$sql = "DELETE FROM mds_instructions WHERE ID_item_menu = ".$_GET["ID_item_menu"];
 
-		//Execution de la requête SQL
+		//Execution de la requÃªte SQL
 		$result = mysql_query($sql,$this->lien_mysql);		
 	}
 	
@@ -2785,7 +2785,7 @@ echo $designation;
 		
 		$sql = "DELETE FROM ldc_rayons WHERE ID = ".$_GET["ID_rayon"];
 
-		//Execution de la requête SQL
+		//Execution de la requÃªte SQL
 		$result = mysql_query($sql,$this->lien_mysql);		
 
 	}
@@ -2794,7 +2794,7 @@ echo $designation;
 	{
 		$sql = "DELETE FROM mds_repas_prevus WHERE ID = ".$_REQUEST["ID"];
 
-		//Execution de la requête SQL
+		//Execution de la requÃªte SQL
 		$result = mysql_query($sql,$this->lien_mysql);		
 
 	}
@@ -2831,7 +2831,7 @@ echo $designation;
 	
 	function modifier_article()
 	{
-		//Récupérer les informations associées à l'ID_article
+		//RÃ©cupÃ©rer les informations associÃ©es Ã  l'ID_article
 		$ID_article = $_POST["ID_article"];
 		$ID_article = mysql_real_escape_string($ID_article);
 		$sql ="SELECT ldc_articles.designation, ldc_liste.quantite, ldc_liste.checked, ldc_articles.unite, ldc_rayons.designation as rayon, ldc_rayons.ID as ID_rayon, ldc_liste.ID_article as ID_article FROM `ldc_liste` LEFT JOIN ldc_articles ON ldc_liste.ID_article = ldc_articles.ID LEFT JOIN ldc_rayons ON ldc_articles.ID_rayon = ldc_rayons.ID WHERE ldc_articles.ID = ".$ID_article." ORDER BY ldc_rayons.ordre, ldc_articles.designation";
@@ -2850,12 +2850,12 @@ echo $designation;
 
 		if (($designation == $nouvelle_designation) AND ($quantite == $nouvelle_quantite) AND ($unite == $nouvelle_unite) AND ($ID_rayon == $nouvel_ID_rayon))
 		{
-			echo "Aucune modification apportée à l'article.";
+			echo "Aucune modification apportÃ©e Ã  l'article.";
 		}
 		else
 		{
 
-			//Si la nouvelle quantité est de 0, supprimer l'article de la liste de courses
+			//Si la nouvelle quantitÃ© est de 0, supprimer l'article de la liste de courses
 			if ($nouvelle_quantite == 0)
 			{
 				$sql = "DELETE  FROM ldc_liste WHERE ID_article = ".$ID_article;
@@ -2864,7 +2864,7 @@ echo $designation;
 				
 			}
 			else
-			//Mettre à jour la quantité
+			//Mettre Ã  jour la quantitÃ©
 			{
 				if ($quantite <> $nouvelle_quantite)
 				{
@@ -2873,7 +2873,7 @@ echo $designation;
 					$result = mysql_query($sql,$this->lien_mysql);
 				}
 			}
-		//Mettre à jour la désignation, l'unité et le rayon
+		//Mettre Ã  jour la dÃ©signation, l'unitÃ© et le rayon
 			$sql = "UPDATE ldc_articles SET designation = '".$nouvelle_designation."', unite = '".$nouvelle_unite."', ID_rayon = ".$nouvel_ID_rayon." WHERE ID = ".$ID_article;
 
 			$result = mysql_query($sql,$this->lien_mysql);
@@ -2883,7 +2883,7 @@ echo $designation;
 
 	function modifier_article_recette()
 	{
-		//Récupérer les informations associées à l'ID_article
+		//RÃ©cupÃ©rer les informations associÃ©es Ã  l'ID_article
 		$ID_article = $_POST["ID_article"];
 		$ID_article = mysql_real_escape_string($ID_article);
 		$sql ="SELECT ldc_articles.designation, mds_recettes.quantite, ldc_articles.unite, ldc_rayons.designation as rayon, ldc_rayons.ID as ID_rayon, mds_recettes.ID_article as ID_article FROM `mds_recettes` LEFT JOIN ldc_articles ON mds_recettes.ID_article = ldc_articles.ID LEFT JOIN ldc_rayons ON ldc_articles.ID_rayon = ldc_rayons.ID WHERE mds_recettes.ID_item_menu = ".$_REQUEST["ID_item_menu"]." AND ldc_articles.ID = ".$ID_article;
@@ -2902,12 +2902,12 @@ echo $designation;
 
 		if (($designation == $nouvelle_designation) AND ($quantite == $nouvelle_quantite) AND ($unite == $nouvelle_unite) AND ($ID_rayon == $nouvel_ID_rayon))
 		{
-			echo "Aucune modification apportée à l'article.";
+			echo "Aucune modification apportÃ©e Ã  l'article.";
 		}
 		else
 		{
 
-			//Si la nouvelle quantité est de 0, supprimer l'article de la liste de courses
+			//Si la nouvelle quantitÃ© est de 0, supprimer l'article de la liste de courses
 			if ($nouvelle_quantite == 0)
 			{
 			$sql = "DELETE  FROM mds_recettes WHERE ID_article = ".$ID_article." AND ID_item_menu = ".$_REQUEST["ID_item_menu"];
@@ -2916,7 +2916,7 @@ echo $designation;
 				
 			}
 			else
-			//Mettre à jour la quantité
+			//Mettre Ã  jour la quantitÃ©
 			{
 				if ($quantite <> $nouvelle_quantite)
 				{
@@ -2925,7 +2925,7 @@ echo $designation;
 					$result = mysql_query($sql,$this->lien_mysql);
 				}
 			}
-		//Mettre à jour la désignation, l'unité et le rayon
+		//Mettre Ã  jour la dÃ©signation, l'unitÃ© et le rayon
 			$sql = "UPDATE ldc_articles SET designation = '".$nouvelle_designation."', unite = '".$nouvelle_unite."', ID_rayon = ".$nouvel_ID_rayon." WHERE ID = ".$ID_article;
 
 			$result = mysql_query($sql,$this->lien_mysql);
@@ -2935,7 +2935,7 @@ echo $designation;
 
 	function modifier_materiel_recette()
 	{
-		//Récupérer les informations associées à l'ID_article
+		//RÃ©cupÃ©rer les informations associÃ©es Ã  l'ID_article
 		$ID_article = $_POST["ID_article"];
 		$ID_article = mysql_real_escape_string($ID_article);
 		$sql ="SELECT ldc_articles.designation, mds_materiel.quantite, ldc_articles.unite, ldc_rayons.designation as rayon, ldc_rayons.ID as ID_rayon, mds_materiel.ID_article as ID_article FROM `mds_materiel` LEFT JOIN ldc_articles ON mds_materiel.ID_article = ldc_articles.ID LEFT JOIN ldc_rayons ON ldc_articles.ID_rayon = ldc_rayons.ID WHERE mds_materiel.ID_item_menu = ".$_REQUEST["ID_item_menu"]." AND ldc_articles.ID = ".$ID_article;
@@ -2954,12 +2954,12 @@ echo $designation;
 
 		if (($designation == $nouvelle_designation) AND ($quantite == $nouvelle_quantite) AND ($unite == $nouvelle_unite) AND ($ID_rayon == $nouvel_ID_rayon))
 		{
-			echo "Aucune modification apportée à l'article.";
+			echo "Aucune modification apportÃ©e Ã  l'article.";
 		}
 		else
 		{
 
-			//Si la nouvelle quantité est de 0, supprimer l'article de la liste de courses
+			//Si la nouvelle quantitÃ© est de 0, supprimer l'article de la liste de courses
 			if ($nouvelle_quantite == 0)
 			{
 				$sql = "DELETE FROM mds_materiel WHERE ID_article = ".$ID_article." AND ID_item_menu = ".$_REQUEST["ID_item_menu"];
@@ -2968,7 +2968,7 @@ echo $designation;
 				
 			}
 			else
-			//Mettre à jour la quantité
+			//Mettre Ã  jour la quantitÃ©
 			{
 				if ($quantite <> $nouvelle_quantite)
 				{
@@ -2977,7 +2977,7 @@ echo $designation;
 					$result = mysql_query($sql,$this->lien_mysql);
 				}
 			}
-		//Mettre à jour la désignation, l'unité et le rayon
+		//Mettre Ã  jour la dÃ©signation, l'unitÃ© et le rayon
 			$sql = "UPDATE ldc_articles SET designation = '".$nouvelle_designation."', unite = '".$nouvelle_unite."', ID_rayon = ".$nouvel_ID_rayon." WHERE ID = ".$ID_article;
 
 			$result = mysql_query($sql,$this->lien_mysql);
@@ -2987,18 +2987,18 @@ echo $designation;
 
 	function ajouter_rayon()
 	{
-//Récupération du dernier numéro d'ordre
+//RÃ©cupÃ©ration du dernier numÃ©ro d'ordre
 	$sql = "SELECT MAX(ordre) FROM ldc_rayons";
 	
-//Execution de la requête SQL
+//Execution de la requÃªte SQL
 	$result = mysql_query($sql,$this->lien_mysql);
 	$row = mysql_fetch_array($result);
 	$ordre =  $row["MAX(ordre)"];
 		
-//Création de la requête SQL
+//CrÃ©ation de la requÃªte SQL
 	$sql = "INSERT INTO ldc_rayons VALUES ( NULL, '".$_GET['designation_nouveau_rayon']."', '".($ordre + 1)."')";
 
-//Execution de la requête SQL
+//Execution de la requÃªte SQL
 	$result = mysql_query($sql,$this->lien_mysql);
 
 
@@ -3023,17 +3023,17 @@ echo $designation;
 			$texte_etape = $_POST["texte_etape"];
 		};
 
-//Vérifier que l'entrée n'existe pas déjà
+//VÃ©rifier que l'entrÃ©e n'existe pas dÃ©jÃ 
 	$sql = "SELECT * FROM mds_instructions WHERE ID_item_menu = ".$ID_item_menu." AND ordre = ".$numero_instruction_ajoutee."";
 	
 	$result = mysql_query($sql,$this->lien_mysql);
 
 	if ((mysql_num_rows($result) == 0) AND (trim($texte_etape) <> ""))
 	{
-//Création de la requête SQL
+//CrÃ©ation de la requÃªte SQL
 	$sql = "INSERT INTO mds_instructions VALUES ( ".$ID_item_menu.", ".$numero_instruction_ajoutee.", '".$texte_etape."')";
 
-//Execution de la requête SQL
+//Execution de la requÃªte SQL
 	$result = mysql_query($sql,$this->lien_mysql);
 	};
 	
@@ -3060,10 +3060,10 @@ echo $designation;
 
 if (trim($texte_etape) <> "")
 {
-//Création de la requête SQL
+//CrÃ©ation de la requÃªte SQL
 	$sql = "UPDATE mds_instructions SET texte = '".$texte_etape."' WHERE ID_item_menu = ".$ID_item_menu." AND ordre = ".$numero_instruction_ajoutee;
 
-//Execution de la requête SQL
+//Execution de la requÃªte SQL
 	$result = mysql_query($sql,$this->lien_mysql);
 };	
 	}
@@ -3082,16 +3082,16 @@ if (trim($texte_etape) <> "")
 			$numero_instruction_supprimee = $_POST["numero_instruction_supprimee"];
 		};
 
-//Création de la requête SQL
+//CrÃ©ation de la requÃªte SQL
 	$sql = "DELETE FROM mds_instructions WHERE ID_item_menu = ".$ID_item_menu." AND ordre = ".$numero_instruction_supprimee;
 
-//Execution de la requête SQL
+//Execution de la requÃªte SQL
 	$result = mysql_query($sql,$this->lien_mysql);
 	
-//Création de la requête SQL
+//CrÃ©ation de la requÃªte SQL
 	$sql = "UPDATE mds_instructions SET ordre = ordre - 1 WHERE ID_item_menu = ".$ID_item_menu." AND ordre > ".$numero_instruction_supprimee;
 
-//Execution de la requête SQL
+//Execution de la requÃªte SQL
 	$result = mysql_query($sql,$this->lien_mysql);
 	
 	}
@@ -3145,17 +3145,17 @@ if (trim($texte_etape) <> "")
 		};
 	};
 		
-//Création de la requête SQL
+//CrÃ©ation de la requÃªte SQL
 	$sql = "INSERT INTO mds_repas_prevus VALUES ( NULL, '".$date."', ".$type_repas.", ".$nouvel_item_menu.")";
 
-//Execution de la requête SQL
+//Execution de la requÃªte SQL
 	$result = mysql_query($sql,$this->lien_mysql);
 		
 	}
 	
 	function modifier_rayon()
 	{
-		//Récupérer les informations associées à l'ID_article
+		//RÃ©cupÃ©rer les informations associÃ©es Ã  l'ID_article
 		$ID_rayon = $_POST["ID_rayon"];
 		$ID_rayon = mysql_real_escape_string($ID_rayon);
 		$sql ="SELECT ldc_rayons.designation FROM ldc_rayons WHERE ldc_rayons.ID = ".$ID_rayon;
@@ -3168,12 +3168,12 @@ if (trim($texte_etape) <> "")
 
 		if ($designation == $nouvelle_designation) 
 		{
-			echo "Aucune modification apportée au rayon.";
+			echo "Aucune modification apportÃ©e au rayon.";
 		}
 		else
 		{
 
-		//Mettre à jour la désignation, l'unité et le rayon
+		//Mettre Ã  jour la dÃ©signation, l'unitÃ© et le rayon
 			$sql = "UPDATE ldc_rayons SET designation = '".$nouvelle_designation."' WHERE ID = ".$ID_rayon;
 
 			$result = mysql_query($sql,$this->lien_mysql);
@@ -3187,7 +3187,7 @@ if(isset($_POST['supprimer_articles_barres']))
 	{
 		$sql = "DELETE FROM ldc_liste WHERE checked = 1";
 
-//Execution de la requête SQL
+//Execution de la requÃªte SQL
 		$result = mysql_query($sql,$this->lien_mysql);		
 	};
 	
@@ -3196,7 +3196,7 @@ if(isset($_POST['ID_article_checked']))
 
 	$sql = "SELECT checked FROM ldc_liste WHERE ID_article = ".$_POST['ID_article_checked'];
 
-//Execution de la requête SQL
+//Execution de la requÃªte SQL
 		$result = mysql_query($sql,$lien_mysql);
 		
 	if(mysql_num_rows($result)>0) {
@@ -3212,7 +3212,7 @@ if(isset($_POST['ID_article_checked']))
 	{
 		$sql = "UPDATE ldc_liste SET checked = 1 WHERE ID_article = ".$_POST['ID_article_checked'];
 		
-//Execution de la requête SQL
+//Execution de la requÃªte SQL
 		$result = mysql_query($sql,$this->lien_mysql);
 	};
 };
@@ -3221,7 +3221,7 @@ if(isset($_POST['ID_article_not_checked']))
 {
 	$sql = "SELECT checked FROM ldc_liste WHERE ID_article = ".$_POST['ID_article_not_checked'];
 
-//Execution de la requête SQL
+//Execution de la requÃªte SQL
 		$result = mysql_query($sql,$this->lien_mysql);
 		
 	if(mysql_num_rows($result)>0) {
@@ -3237,7 +3237,7 @@ if(isset($_POST['ID_article_not_checked']))
 	{
 		$sql = "UPDATE ldc_liste SET checked = 0 WHERE ID_article = ".$_POST['ID_article_not_checked'];
 		
-//Execution de la requête SQL
+//Execution de la requÃªte SQL
 		$result = mysql_query($sql,$this->lien_mysql);
 	};
 	}	
@@ -3246,7 +3246,7 @@ if(isset($_POST['ID_article_not_checked']))
 if(isset($_POST['quantite_modifiee']))
 {
 
-//Suppression des articles avec une quantité de 0
+//Suppression des articles avec une quantitÃ© de 0
 
 	$sql = "";
 	$premiere_entree = TRUE;
@@ -3267,19 +3267,19 @@ if(isset($_POST['quantite_modifiee']))
 		};
     };
 
-//Execution de la requête SQL
+//Execution de la requÃªte SQL
 	If ($sql <> "")
 	{
 		$result = mysql_query($sql,$this->lien_mysql);
 	};
 
-//Modifier les quantités des articles
+//Modifier les quantitÃ©s des articles
     foreach($_POST['quantite_modifiee'] as $ID_article => $quantite)
     {
 		if (($quantite <> "") OR ($quantite <> 0))
 		{
 			$sql = "UPDATE  ldc_liste SET quantite = ".$quantite." WHERE ID_article = ".$ID_article;
-//Execution de la requête SQL
+//Execution de la requÃªte SQL
 			$result = mysql_query($sql,$this->lien_mysql);
 		};
     };
@@ -3287,10 +3287,10 @@ if(isset($_POST['quantite_modifiee']))
 };
 
 
-// Ajouter les articles pour lesquels la quantité a été renseignée
+// Ajouter les articles pour lesquels la quantitÃ© a Ã©tÃ© renseignÃ©e
 if(isset($_POST['quantite_ajoutee']))
 {
-//Vérifier qu'aucun article n'est déjà entré (cas où l'on ressoumettrait un formulaire)
+//VÃ©rifier qu'aucun article n'est dÃ©jÃ  entrÃ© (cas oÃ¹ l'on ressoumettrait un formulaire)
 	$sql = "";
 	$premiere_entree = TRUE;
     foreach($_POST['quantite_ajoutee'] as $ID_article => $quantite)
@@ -3318,7 +3318,7 @@ if(isset($_POST['quantite_ajoutee']))
 		}
 	};	
 
-//Création de la requête SQL
+//CrÃ©ation de la requÃªte SQL
 
 	$sql = "";
 	$premiere_entree = TRUE;
@@ -3339,17 +3339,17 @@ if(isset($_POST['quantite_ajoutee']))
 		};
     };
 
-//Execution de la requête SQL
+//Execution de la requÃªte SQL
 	if ($sql <> "")
 	{
 		$result = mysql_query($sql,$this->lien_mysql);
 	};
 };
 
-//Ajouter un article à la base de données et à la liste en même temps
+//Ajouter un article Ã  la base de donnÃ©es et Ã  la liste en mÃªme temps
 	if (isset($_POST['nouvel_article']) AND isset($_POST['quantite_nouvel_article']) AND isset($_POST['unite_nouvel_article']))
 	{
-//Vérifier qu'aucun article n'est déjà entré (cas où l'on ressoumettrait un formulaire)
+//VÃ©rifier qu'aucun article n'est dÃ©jÃ  entrÃ© (cas oÃ¹ l'on ressoumettrait un formulaire)
 	$sql = "SELECT ID FROM ldc_articles WHERE designation='".mysql_real_escape_string($_POST['nouvel_article'])."'";
 	$result = mysql_query($sql,$this->lien_mysql);
 	
@@ -3358,26 +3358,26 @@ if(isset($_POST['quantite_ajoutee']))
 			return "Article d&eacute;ja saisi !";
 	};	
 
-//Création de la requête SQL
+//CrÃ©ation de la requÃªte SQL
 
 	$sql = "INSERT INTO ldc_articles VALUES ( NULL, '".$_POST['nouvel_article']."', '".$_POST['unite_nouvel_article']."', ".$_POST['ID_rayon'].")";
 
-//Execution de la requête SQL
+//Execution de la requÃªte SQL
 	$result = mysql_query($sql,$this->lien_mysql);
 
-//Récupération de l'ID du nouvel article
+//RÃ©cupÃ©ration de l'ID du nouvel article
 	$sql = "SELECT ID FROM ldc_articles WHERE designation = '".$_POST['nouvel_article']."'";
 	$result = mysql_query($sql,$this->lien_mysql);
 	$row = mysql_fetch_array($result);
 
 	$ID_article =  $row["ID"];
 	
-//Ajouter l'article à la liste de oourse
-//Création de la requête SQL
+//Ajouter l'article Ã  la liste de oourse
+//CrÃ©ation de la requÃªte SQL
 
 	$sql = "INSERT INTO ldc_liste VALUES ( NULL, ".$_POST['quantite_nouvel_article'].", ".$ID_article.", 0)";
 
-//Execution de la requête SQL
+//Execution de la requÃªte SQL
 	$result = mysql_query($sql,$this->lien_mysql);
 
 
@@ -3400,7 +3400,7 @@ if(isset($_POST['type_repas_ajoute']) AND isset($_GET['ID_item_menu']))
 {
 	$ID_type_repas =  $_POST['type_repas_ajoute'];
 	
-//Vérifier que l'association n'existe pas déjà
+//VÃ©rifier que l'association n'existe pas dÃ©jÃ 
 
 	$sql = "SELECT COUNT(*) FROM mds_items_menu_types_repas WHERE ID_type_repas = ".$ID_type_repas." AND ID_item_menu = ".$_GET["ID_item_menu"];
 	
@@ -3412,20 +3412,20 @@ if(isset($_POST['type_repas_ajoute']) AND isset($_GET['ID_item_menu']))
 	
 	if ($compte_lien == 0)
 	{
-//Création de la requête SQL
+//CrÃ©ation de la requÃªte SQL
 	$sql = "INSERT  INTO mds_items_menu_types_repas VALUES (".$_GET["ID_item_menu"].", ".$ID_type_repas.")";
 
-//Execution de la requête SQL
+//Execution de la requÃªte SQL
 	$result = mysql_query($sql,$this->lien_mysql);
 	};
 };
 
 
 
-// Ajouter les articles pour lesquels la quantité a été renseignée
+// Ajouter les articles pour lesquels la quantitÃ© a Ã©tÃ© renseignÃ©e
 if(isset($_POST['quantite_ajoutee']))
 {
-//Vérifier qu'aucun article n'est déjà entré (cas où l'on ressoumettrait un formulaire)
+//VÃ©rifier qu'aucun article n'est dÃ©jÃ  entrÃ© (cas oÃ¹ l'on ressoumettrait un formulaire)
 	$sql = "";
 	$premiere_entree = TRUE;
     foreach($_POST['quantite_ajoutee'] as $ID_article => $quantite)
@@ -3453,7 +3453,7 @@ if(isset($_POST['quantite_ajoutee']))
 		}
 	};	
 
-//Création de la requête SQL
+//CrÃ©ation de la requÃªte SQL
 
 	$sql = "";
 	$premiere_entree = TRUE;
@@ -3474,17 +3474,17 @@ if(isset($_POST['quantite_ajoutee']))
 		};
     };
 
-//Execution de la requête SQL
+//Execution de la requÃªte SQL
 	if ($sql <> "")
 	{
 		$result = mysql_query($sql,$this->lien_mysql);
 	};
 };
 
-// Ajouter les articles pour lesquels la quantité a été renseignée
+// Ajouter les articles pour lesquels la quantitÃ© a Ã©tÃ© renseignÃ©e
 if(isset($_POST['quantite_materiel_ajoute']))
 {
-//Vérifier qu'aucun article n'est déjà entré (cas où l'on ressoumettrait un formulaire)
+//VÃ©rifier qu'aucun article n'est dÃ©jÃ  entrÃ© (cas oÃ¹ l'on ressoumettrait un formulaire)
 	$sql = "";
 	$premiere_entree = TRUE;
     foreach($_POST['quantite_materiel_ajoute'] as $ID_article => $quantite)
@@ -3512,7 +3512,7 @@ if(isset($_POST['quantite_materiel_ajoute']))
 		}
 	};	
 
-//Création de la requête SQL
+//CrÃ©ation de la requÃªte SQL
 
 	$sql = "";
 	$premiere_entree = TRUE;
@@ -3533,17 +3533,17 @@ if(isset($_POST['quantite_materiel_ajoute']))
 		};
     };
 
-//Execution de la requête SQL
+//Execution de la requÃªte SQL
 	if ($sql <> "")
 	{
 		$result = mysql_query($sql,$this->lien_mysql);
 	};
 };
 
-//Ajouter un article à la base de données et à la recette en même temps
+//Ajouter un article Ã  la base de donnÃ©es et Ã  la recette en mÃªme temps
 	if (isset($_POST['nouvel_article']) AND isset($_POST['quantite_nouvel_article']) AND isset($_POST['unite_nouvel_article']))
 	{
-//Vérifier qu'aucun article n'est déjà entré (cas où l'on ressoumettrait un formulaire)
+//VÃ©rifier qu'aucun article n'est dÃ©jÃ  entrÃ© (cas oÃ¹ l'on ressoumettrait un formulaire)
 	$sql = "SELECT ID FROM ldc_articles WHERE designation='".mysql_real_escape_string($_POST['nouvel_article'])."'";
 	$result = mysql_query($sql,$this->lien_mysql);
 	
@@ -3552,62 +3552,62 @@ if(isset($_POST['quantite_materiel_ajoute']))
 			return "Article d&eacute;ja saisi !";
 	};	
 
-//Création de la requête SQL
+//CrÃ©ation de la requÃªte SQL
 
 	$sql = "INSERT INTO ldc_articles VALUES ( NULL, '".$_POST['nouvel_article']."', '".$_POST['unite_nouvel_article']."', ".$_POST['ID_rayon'].")";
 
-//Execution de la requête SQL
+//Execution de la requÃªte SQL
 	$result = mysql_query($sql,$this->lien_mysql);
 
-//Récupération de l'ID du nouvel article
+//RÃ©cupÃ©ration de l'ID du nouvel article
 	$sql = "SELECT ID FROM ldc_articles WHERE designation = '".$_POST['nouvel_article']."'";
 	$result = mysql_query($sql,$this->lien_mysql);
 	$row = mysql_fetch_array($result);
 
 	$ID_article =  $row["ID"];
 	
-//Ajouter l'article à la liste de oourse
-//Création de la requête SQL
+//Ajouter l'article Ã  la liste de oourse
+//CrÃ©ation de la requÃªte SQL
 
 	$sql = "INSERT INTO mds_recettes VALUES ( ".$_GET["ID_item_menu"].", ".$_POST['quantite_nouvel_article'].", ".$ID_article.")";
 
-//Execution de la requête SQL
+//Execution de la requÃªte SQL
 	$result = mysql_query($sql,$this->lien_mysql);
 
 	};
 
-//Ajouter un materiel à la base de données et à la recette en même temps
+//Ajouter un materiel Ã  la base de donnÃ©es et Ã  la recette en mÃªme temps
 	if (isset($_POST['nouveau_materiel']) AND isset($_POST['quantite_nouveau_materiel']) AND isset($_POST['unite_nouveau_materiel']))
 	{
-//Vérifier qu'aucun materiel n'est déjà entré (cas où l'on ressoumettrait un formulaire)
+//VÃ©rifier qu'aucun materiel n'est dÃ©jÃ  entrÃ© (cas oÃ¹ l'on ressoumettrait un formulaire)
 	$sql = "SELECT ID FROM ldc_articles WHERE designation='".mysql_real_escape_string($_POST['nouveau_materiel'])."'";
 	$result = mysql_query($sql,$this->lien_mysql);
 	
 	if(mysql_num_rows($result)>0)
 	{
-			return "Matériel d&eacute;ja saisi !";
+			return "MatÃ©riel d&eacute;ja saisi !";
 	};	
 
-//Création de la requête SQL
+//CrÃ©ation de la requÃªte SQL
 
 	$sql = "INSERT INTO ldc_articles VALUES ( NULL, '".$_POST['nouveau_materiel']."', '".$_POST['unite_nouveau_materiel']."', ".$_POST['ID_rayon'].")";
 
-//Execution de la requête SQL
+//Execution de la requÃªte SQL
 	$result = mysql_query($sql,$this->lien_mysql);
 
-//Récupération de l'ID du nouveau materiel
+//RÃ©cupÃ©ration de l'ID du nouveau materiel
 	$sql = "SELECT ID FROM ldc_articles WHERE designation = '".$_POST['nouveau_materiel']."'";
 	$result = mysql_query($sql,$this->lien_mysql);
 	$row = mysql_fetch_array($result);
 
 	$ID_article =  $row["ID"];
 	
-//Ajouter le materiel à la recette
-//Création de la requête SQL
+//Ajouter le materiel Ã  la recette
+//CrÃ©ation de la requÃªte SQL
 
 	$sql = "INSERT INTO mds_materiel VALUES ( ".$_GET["ID_item_menu"].", ".$_POST['quantite_nouveau_materiel'].", ".$ID_article.")";
 
-//Execution de la requête SQL
+//Execution de la requÃªte SQL
 	$result = mysql_query($sql,$this->lien_mysql);
 
 
@@ -3620,7 +3620,7 @@ if(isset($_POST['quantite_materiel_ajoute']))
 
 if(isset($_POST['nouvelle_recette']))
 {
-//Vérifier qu'aucune homonyme n'est déjà entrée (cas où l'on ressoumettrait un formulaire)
+//VÃ©rifier qu'aucune homonyme n'est dÃ©jÃ  entrÃ©e (cas oÃ¹ l'on ressoumettrait un formulaire)
 	$sql = "SELECT * FROM mds_items_menu WHERE designation = '".$_POST['nouvelle_recette']."'";
 
 	$result = mysql_query($sql,$this->lien_mysql);
@@ -3631,10 +3631,10 @@ if(isset($_POST['nouvelle_recette']))
 
 	if ($_POST['nouvelle_recette'] <> "")
 	{
-	//Création de la requête SQL
+	//CrÃ©ation de la requÃªte SQL
 	$sql = "INSERT  INTO mds_items_menu VALUES (NULL, '".$_POST['nouvelle_recette']."')";
 
-	//Execution de la requête SQL
+	//Execution de la requÃªte SQL
 	$result = mysql_query($sql,$this->lien_mysql);
 	};
 }
@@ -3667,14 +3667,14 @@ if(isset($_POST['nouvelle_recette']))
 
 
 
-//Création de la requête SQL
+//CrÃ©ation de la requÃªte SQL
 	if (isset($article_recherche) AND ($article_recherche <> ""))
 	{
 	$article_recherche =  mysql_real_escape_string($article_recherche);
 
 	$sql ="SELECT ldc_articles.ID, ldc_articles.designation, ldc_liste.quantite, ldc_articles.unite FROM ldc_articles LEFT JOIN ldc_liste ON ldc_articles.ID = ldc_liste.ID_article WHERE ldc_articles.designation LIKE '".$article_recherche."' ORDER BY ldc_articles.designation";
 	
-//Execution de la requête SQL
+//Execution de la requÃªte SQL
 	$result = mysql_query($sql,$this->lien_mysql);
 	
 //	echo mysql_error();
@@ -3698,7 +3698,7 @@ if(isset($_POST['nouvelle_recette']))
 			{
 				$texte_liste .= " step='0.005'";
 			};
-			if ($row["unite"] == "unité(s)")
+			if ($row["unite"] == "unitÃ©(s)")
 			{
 				$texte_liste .= " step='0.01'";
 			};
@@ -3710,14 +3710,14 @@ if(isset($_POST['nouvelle_recette']))
 				</p>
 			</form>";
 	} else
-//Si aucun article ne correspond dans la base de données, proposer d'en ajouter un
+//Si aucun article ne correspond dans la base de donnÃ©es, proposer d'en ajouter un
 	{
 		$texte_liste .= "<form method='post' action='page_perso.php?commande=afficher_liste_de_courses#ajout_article_a_la_liste'><p class='champs_centres'><input class='champ' type='text' name='nouvel_article' value=\"".stripslashes($article_recherche)."\"></input><input class='champ_quantite' type='number' name='quantite_nouvel_article' value=1></input><input class='champ' type='text' name='unite_nouvel_article' value='unit&eacute;(s)'></input>";
-// création de la liste des rayons
-		//Création de la requête SQL
+// crÃ©ation de la liste des rayons
+		//CrÃ©ation de la requÃªte SQL
 	$sql ="SELECT ldc_rayons.ID, ldc_rayons.designation FROM ldc_rayons ORDER BY ldc_rayons.ordre";
 
-		//Execution de la requête SQL
+		//Execution de la requÃªte SQL
 	$result = mysql_query($sql,$this->lien_mysql);
 	if(mysql_num_rows($result)>0) {
 		$texte_liste .= $this->composition_select_rayons(25);
@@ -3750,7 +3750,7 @@ if(isset($_POST['nouvelle_recette']))
 
 
 
-//Création de la requête SQL
+//CrÃ©ation de la requÃªte SQL
 	if (isset($article_recherche) AND ($article_recherche <> ""))
 	{
 	$article_recherche =  mysql_real_escape_string($article_recherche);
@@ -3758,7 +3758,7 @@ if(isset($_POST['nouvelle_recette']))
 //	$sql ="SELECT ldc_articles.ID, ldc_articles.designation, mds_recettes.quantite, ldc_articles.unite FROM ldc_articles LEFT JOIN mds_recettes ON ldc_articles.ID = mds_recettes.ID_article WHERE ldc_articles.designation LIKE '".$article_recherche."' AND mds_recettes.ID_item_menu = '".$ID_item_menu."' ORDER BY ldc_articles.designation";
 	$sql ="SELECT ldc_articles.ID, ldc_articles.designation, ldc_articles.unite FROM ldc_articles WHERE ldc_articles.designation LIKE '".$article_recherche."' ORDER BY ldc_articles.designation";
 	
-//Execution de la requête SQL
+//Execution de la requÃªte SQL
 	$result = mysql_query($sql,$this->lien_mysql);
 	
 //	echo mysql_error();
@@ -3776,7 +3776,7 @@ if(isset($_POST['nouvelle_recette']))
 			{
 				$texte_liste .= " step='0.005'";
 			};
-			if ($row["unite"] == "unité(s)")
+			if ($row["unite"] == "unitÃ©(s)")
 			{
 				$texte_liste .= " step='0.01'";
 			};
@@ -3784,23 +3784,23 @@ if(isset($_POST['nouvelle_recette']))
 		};
 		$texte_liste .= "</ul>
 				<p class='champs_centres'>
-					<input class='bouton' type='submit' value='Modifier la liste des ingrédients'>
+					<input class='bouton' type='submit' value='Modifier la liste des ingrÃ©dients'>
 				</p>
 			</form>";
 	} else
-//Si aucun article ne correspond dans la base de données, proposer d'en ajouter un
+//Si aucun article ne correspond dans la base de donnÃ©es, proposer d'en ajouter un
 	{
 		$texte_liste .= "<form method='post' action='page_perso.php?commande=editer_item_menu&ID_item_menu=".$_GET["ID_item_menu"]."#ajout_article_a_la_liste'><p class='champs_centres'><input class='champ' type='text' name='nouvel_article' value=\"".stripslashes($article_recherche)."\"></input><input class='champ_quantite' type='number' name='quantite_nouvel_article' value=1></input><input class='champ' type='text' name='unite_nouvel_article' value='unit&eacute;(s)'></input>";
-// création de la liste des rayons
-		//Création de la requête SQL
+// crÃ©ation de la liste des rayons
+		//CrÃ©ation de la requÃªte SQL
 	$sql ="SELECT ldc_rayons.ID, ldc_rayons.designation FROM ldc_rayons ORDER BY ldc_rayons.ordre";
 
-		//Execution de la requête SQL
+		//Execution de la requÃªte SQL
 	$result = mysql_query($sql,$this->lien_mysql);
 	if(mysql_num_rows($result)>0) {
 		$texte_liste .= $this->composition_select_rayons(25);
 		};
-		$texte_liste .= "<input class='bouton' type='submit' value='Modifier la liste des ingrédient'></p></form>";
+		$texte_liste .= "<input class='bouton' type='submit' value='Modifier la liste des ingrÃ©dient'></p></form>";
 	};
 	};
 
@@ -3835,7 +3835,7 @@ if(isset($_POST['nouvelle_recette']))
 
 
 
-//Création de la requête SQL
+//CrÃ©ation de la requÃªte SQL
 	if (isset($materiel_recherche) AND ($materiel_recherche <> ""))
 	{
 	$materiel_recherche =  mysql_real_escape_string($materiel_recherche);
@@ -3843,7 +3843,7 @@ if(isset($_POST['nouvelle_recette']))
 //	$sql ="SELECT ldc_articles.ID, ldc_articles.designation, mds_recettes.quantite, ldc_articles.unite FROM ldc_articles LEFT JOIN mds_recettes ON ldc_articles.ID = mds_recettes.ID_article WHERE ldc_articles.designation LIKE '".$article_recherche."' AND mds_recettes.ID_item_menu = '".$ID_item_menu."' ORDER BY ldc_articles.designation";
 	$sql ="SELECT ldc_articles.ID, ldc_articles.designation, ldc_articles.unite FROM ldc_articles WHERE ldc_articles.designation LIKE '".$materiel_recherche."' ORDER BY ldc_articles.designation";
 	
-//Execution de la requête SQL
+//Execution de la requÃªte SQL
 	$result = mysql_query($sql,$this->lien_mysql);
 	
 //	echo mysql_error();
@@ -3864,16 +3864,16 @@ if(isset($_POST['nouvelle_recette']))
 				</p>
 			</form>";
 	} else
-//Si aucun article ne correspond dans la base de données, proposer d'en ajouter un
+//Si aucun article ne correspond dans la base de donnÃ©es, proposer d'en ajouter un
 	{
 //		$texte_liste .= "<form method='post' action='page_perso.php?commande=afficher_liste_de_courses#ajout_materiel_a_la_liste'><p class='champs_centres'><input class='champ' type='text' name='nouveau_materiel' value=\"".stripslashes($materiel_recherche)."\"></input><input class='champ_quantite' type='number' name='quantite_nouveau_materiel' value=1></input><input class='champ' type='text' name='unite_nouveau_materiel' value='unit&eacute;(s)'></input>";
 		$texte_liste .= "<form method='post' action='page_perso.php?commande=editer_item_menu&ID_item_menu=".$_GET["ID_item_menu"]."#ajout_materiel_a_la_liste'><p class='champs_centres'><input class='champ' type='text' name='nouveau_materiel' value=\"".stripslashes($materiel_recherche)."\"></input><input class='champ_quantite' type='number' name='quantite_nouveau_materiel' value=1></input><input class='champ' type='text' name='unite_nouveau_materiel' value='unit&eacute;(s)'></input>";
 
-// création de la liste des rayons
-		//Création de la requête SQL
+// crÃ©ation de la liste des rayons
+		//CrÃ©ation de la requÃªte SQL
 	$sql ="SELECT ldc_rayons.ID, ldc_rayons.designation FROM ldc_rayons ORDER BY ldc_rayons.ordre";
 
-		//Execution de la requête SQL
+		//Execution de la requÃªte SQL
 	$result = mysql_query($sql,$this->lien_mysql);
 	if(mysql_num_rows($result)>0) {
 		$texte_liste .= $this->composition_select_rayons(25);
@@ -3906,10 +3906,10 @@ if(isset($_POST['nouvelle_recette']))
 	function imprimer_liste_de_courses()
 	{
 
-//Création de la requête SQL
+//CrÃ©ation de la requÃªte SQL
 	$sql ="SELECT ldc_articles.designation, ldc_liste.quantite, ldc_liste.checked, ldc_articles.unite, ldc_rayons.designation as rayon, ldc_rayons.ID as ID_rayon, ldc_liste.ID_article as ID_article FROM `ldc_liste` LEFT JOIN ldc_articles ON ldc_liste.ID_article = ldc_articles.ID LEFT JOIN ldc_rayons ON ldc_articles.ID_rayon = ldc_rayons.ID ORDER BY ldc_rayons.ordre, ldc_articles.designation";
 
-//Execution de la requête SQL
+//Execution de la requÃªte SQL
 	$result = mysql_query($sql,$this->lien_mysql);
 	$ID_rayon = 0;
 	if(mysql_num_rows($result)>0) {
@@ -3943,14 +3943,14 @@ if(isset($_POST['nouvelle_recette']))
 		$texte_liste = "Aucun article<br/>";
 	}
 
-// Pour envoyer un mail HTML, l'en-tête Content-type doit être défini
+//Â PourÂ envoyerÂ unÂ mailÂ HTML,Â l'en-tÃªteÂ Content-typeÂ doitÂ ÃªtreÂ dÃ©fini
 $headers = "MIME-Version: 1.0"."\r\n";
 $headers .= "Content-type: text/html; charset=utf-8"."\r\n";
 
 
 
-// Envoi du mail
-mail("qwerty123@print.epsonconnect.com", $titre_mail, $texte_liste, $headers); // Enter here your printer's email adress
+//Â EnvoiÂ duÂ mail
+mail("qwerty123@print.epsonconnect.com", $titre_mail, $texte_liste, $headers); // Enter here your printer's email address
 	}
 };
 
