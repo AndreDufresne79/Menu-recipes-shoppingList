@@ -2583,8 +2583,15 @@ echo $designation;
 	$row = mysql_fetch_array($result);
 	$total =  $row["total"];
 
-	$jauge = '<meter min="0" max="'.$total.'" value="'.$fait.'">'.round(($fait / $total)*100).'%</meter>';
-	return $jauge;
+		if ($total <> 0)
+		{
+			$jauge = '<meter min="0" max="'.$total.'" value="'.$fait.'">'.round(($fait / $total)*100).'%</meter>';
+		}
+		else
+		{
+			$jauge = "";
+		}
+		return $jauge;
 	}
 	
 	function composition_liste()
